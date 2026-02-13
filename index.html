@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrnithoSim - Simulatore di Ornitotteri</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --light: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: var(--light);
+        }
+
+        /* Sidebar per i controlli */
+        #sidebar {
+            width: 350px;
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        /* Area principale per la simulazione */
+        #viewport {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        canvas {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        h2 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar">
+        <h2>OrnithoSim</h2>
+        
+        <div class="input-group">
+            <label>Peso Totale (g)</label>
+            <input type="number" id="peso" placeholder="es. 500">
+        </div>
+        
+        <div class="input-group">
+            <label>Apertura Alare (cm)</label>
+            <input type="number" id="apertura" placeholder="es. 120">
+        </div>
+
+        <div class="input-group">
+            <label>Capacità Batteria (mAh)</label>
+            <input type="number" id="batteria" placeholder="es. 1500">
+        </div>
+
+        <div class="input-group">
+            <label>Autonomia desiderata (min)</label>
+            <input type="number" id="autonomia" placeholder="es. 10">
+        </div>
+
+        <button onclick="calcolaMeccanismo()">Simula Meccanismo</button>
+
+        <div class="results" id="output-dati">
+            <strong>Analisi Costruttiva:</strong>
+            <p id="msg-risultato">Inserisci i dati per visualizzare i componenti necessari.</p>
+        </div>
+    </aside>
+
+    <main id="viewport">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1>Simulazione Ornitottero</h1>
+            <p>Visualizzazione in tempo reale dei leveraggi meccanici</p>
+        </div>
+        
+        <canvas id="simulationCanvas" width="800" height="500"></canvas>
+        
+        <p style="color: #7f8c8d; margin-top: 10px;">
+            Utilizza i controlli a sinistra per modificare la dinamica di volo.
+        </p>
+    </main>
+
+    <script>
+        function calcolaMeccanismo() {
+            const peso = document.getElementById('peso').value;
+            const batteria = document.getElementById('batteria').value;
+            
+            // Logica d'esempio per il messaggio di output
+            if(peso && batteria) {
+                document.getElementById('msg-risultato').innerHTML = 
+                    `Per un peso di ${peso}g, si consiglia un meccanismo a biella rinforzata e un motore con almeno 150W di potenza.`;
+            } else {
+                alert("Per favore, compila tutti i campi!");
+            }
+        }
+
+        // Qui andrebbe il codice per l'animazione del canvas
+        const canvas = document.getElementById('simulationCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = "#ecf0f1";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#3498db";
+        ctx.textAlign = "center";
+        ctx.fillText("L'animazione del meccanismo apparirà qui", canvas.width/2, canvas.height/2);
+    </script>
+
+</body>
+</html>

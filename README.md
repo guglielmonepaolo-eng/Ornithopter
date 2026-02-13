@@ -1,4 +1,4 @@
-# Ornithopter# 
+# OrnithoSim: Simulatore di Ornitotteri
 
 **OrnithoSim** è una web app interattiva progettata per l'ingegneria e il design di ornitotteri (macchine volanti a battito d'ali). Il simulatore permette di configurare parametri fisici, visualizzare il movimento meccanico in tempo reale e calcolare i requisiti costruttivi necessari per il volo.
 
